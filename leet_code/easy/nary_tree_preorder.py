@@ -18,8 +18,8 @@ class Solution:
             return []
 
         result = [root.val]
-        for child in root.children:
-            result.extend(self.preorder(child))
+        for child in reversed(root.children):
+            result = result + self.preorder(child)
 
         return result
 
