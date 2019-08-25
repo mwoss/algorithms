@@ -10,6 +10,7 @@ Output: [2,2,2,1,4,3,3,9,6,7,19]
 """
 
 from collections import Counter
+from typing import List
 
 
 class Solution:
