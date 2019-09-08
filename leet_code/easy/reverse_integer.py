@@ -18,8 +18,9 @@ Assume we are dealing with an environment which could only store integers within
 [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
 """
 
+
 class Solution:
-    def reverse_v2(self, x:int) -> int:
+    def reverse_v2(self, x: int) -> int:
         x_sing = self.get_num_sign(x)
         result = x_sing * int(str(abs(x))[::-1])
 
