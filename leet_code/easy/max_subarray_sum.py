@@ -19,3 +19,10 @@ class Solution:
             max_so_far = max(max_so_far, max_ending)
 
         return max_so_far
+
+    def max_sub_array_v22(self, nums: List[int]) -> int:
+        for i in range(1, len(nums)):
+            if nums[i - 1] > 0:
+                nums[i] += nums[i - 1]
+
+        return max(nums)
