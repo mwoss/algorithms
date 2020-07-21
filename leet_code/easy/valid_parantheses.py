@@ -33,8 +33,8 @@ class Solution:
             elif len(stack) == 0 and p not in valid_par:
                 return False
             else:
-                r_p = stack.pop()
-                if valid_par[r_p] != p:
+                l_p = stack.pop()
+                if valid_par[l_p] != p:
                     return False
 
         return len(stack) == 0
