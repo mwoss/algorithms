@@ -35,7 +35,6 @@ each element of array A is an integer within the range [−2,147,483,648..2,147,
 
 def solution(A):
     A.sort()
-
     for i in range(0, len(A) - 2):
         p, q, r = A[i], A[i + 1], A[i + 2]
 
