@@ -8,8 +8,8 @@ n is a prime number
 def primality(n):
     # checks if given number can be considered as prime number
     i = 2
-    while i * i <= n:
-        if n % 2 == 0:
+    while i * i < n:
+        if n % i == 0:
             return False
         i += 1
 
