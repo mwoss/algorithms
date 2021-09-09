@@ -11,10 +11,12 @@ from typing import List
 
 
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        indexed = {n: idx for idx, n in enumerate(nums)}
+    def two_sum(self, nums: List[int], target: int) -> List[int]:
+        buffer = {}
         for idx, num in enumerate(nums):
             current = target - num
-            if current in indexed and idx != indexed[current]:
-                return [idx, indexed[current]]
-        raise RuntimeError
+            if current in buffer:
+                return [idx, buffer[current]]
+            else:
+                buffer[num] = idx
+        raise RuntimeError("No solution")
