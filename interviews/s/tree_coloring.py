@@ -73,6 +73,15 @@ def propagate_color(node: Tree, color: Colors = Colors.BLUE):
         current_node = current_node.parent
 
 
+def get_propagate_call_count2(root: Tree):
+    """
+    TODO: to implement
+    Better approach would be to store is_propagated flag inside Tree structure.
+    Having that info we would not have to propagate colors up to the root node. We would only have to
+    set flag on the parent node and in the next iteration do this again.
+    """
+
+
 if __name__ == '__main__':
     subtree1 = Tree('B', [Tree('D', [], Colors.RED), Tree('E', [], Colors.RED)], Colors.RED)
     subtree2 = Tree('B', [Tree('F', [], Colors.RED)], Colors.BLUE)
