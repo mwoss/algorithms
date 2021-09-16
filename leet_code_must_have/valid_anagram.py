@@ -27,6 +27,7 @@ class Solution2:
 
         return True
 
+
 class Solution3:
     def is_anagram(self, s: str, t: str) -> bool:
         if len(s) != len(t):
@@ -42,6 +43,7 @@ class Solution3:
                 return False
 
         return True
+
 
 if __name__ == '__main__':
     s = Solution3()

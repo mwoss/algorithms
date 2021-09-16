@@ -45,8 +45,7 @@ class Solution2:
                     not_primes[i * j] = True
                     j += 1
 
-        return sum(not_primes)
-
+        return n - sum(not_primes)
 
 
 if __name__ == '__main__':
@@ -54,4 +53,4 @@ if __name__ == '__main__':
     print(s.countPrimes(10))
 
     s2 = Solution2()
-    print(s.countPrimes(10))
+    print(s2.countPrimes(10))

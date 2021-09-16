@@ -22,6 +22,13 @@ class Solution:
         """
 
         # yup, crazy bit wise operations :<
-        if b == 0:
-            return a
-        return self.get_sum(a ^ b, (a & b) << 1)
+        while b != 0:
+            c = a & b
+            a = a ^ b
+            b = c << 1
+        return a
+
+
+if __name__ == '__main__':
+    s = Solution()
+    print(s.get_sum(-1, 1))
