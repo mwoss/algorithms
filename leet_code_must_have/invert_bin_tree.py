@@ -13,7 +13,7 @@ class TreeNode:
 
 
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def invert_tree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if root is None:
             return None
 
@@ -24,12 +24,12 @@ class Solution:
         # root.left = self.invertTree(root.right)
         # root.right = self.invertTree(temp)
 
-        root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+        root.left, root.right = self.invert_tree(root.right), self.invert_tree(root.left)
         return root
 
 
 class SolutionDFS:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def invert_tree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         stack = [root]
         while stack:
             node = stack.pop()
@@ -41,7 +41,7 @@ class SolutionDFS:
 
 
 class SolutionBFS:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def invert_tree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         stack = [root]
         while stack:
             node = stack.pop(0)
@@ -51,7 +51,7 @@ class SolutionBFS:
                 stack.append(node.right)
         return root
 
-    def invertTreeMoreOptimal(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def invert_tree_optimal(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         stack = deque([root])
         while stack:
             node = stack.popleft()  # popleft time complexity is O(1)
