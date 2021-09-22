@@ -12,6 +12,21 @@ def dfs(graph, start):
     return visited
 
 
+def dfs_adj_matrix(graph, start):
+    vertices_count = len(graph)
+    stack, visited = [start], [False] * vertices_count
+
+    while stack:
+        vertex = stack.pop()
+
+        # if we cant to print once or do something else we should check here if vertex was already visited
+        visited[vertex] = True
+
+        for node in graph[vertex]:
+            if node == 1 and not visited[node]:
+                stack.append(node)
+
+
 def bfs(graph, start):
     # time complexity - O(V+E), O(b^d)
     # space complexity - O(V), O(b^d)
@@ -24,6 +39,21 @@ def bfs(graph, start):
             stack.extend(graph[vertex] - visited)
 
     return visited
+
+
+def bfs_adj_matrix(graph, start):
+    vertices_count = len(graph)
+    stack, visited = [start], [False] * vertices_count
+
+    while stack:
+        vertex = stack.pop(0)
+
+        # if we cant to print once or do something else we should check here if vertex was already visited
+        visited[vertex] = True
+
+        for node in graph[vertex]:
+            if node == 1 and not visited[node]:
+                stack.append(node)
 
 
 def dfs_paths(graph, start, goal):
