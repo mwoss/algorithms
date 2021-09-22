@@ -47,8 +47,34 @@ class Solution:
         return 0
 
 
+class Solution2:
+    def search(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1
+        # [4, 5, 6, 7, 0, 1, 2]
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[right]:
+                left = mid + 1
+            else:
+                right = mid
+
+        pivot_idx = left
+        left, right = 0, len(nums)
+        while left < right:
+            mid = (left + right) // 2
+            real_mid = (mid + pivot_idx) % len(nums)
+            if nums[real_mid] < target:
+                left = mid + 1
+            elif nums[real_mid] > target:
+                right = mid
+            else:
+                return real_mid
+
+        return -1
+
+
 if __name__ == '__main__':
-    s = Solution()
-    # print(s.search([4, 5, 6, 7, 0, 1, 2], 0))
-    # print(s.search([1], 1))
+    s = Solution2()
+    print(s.search([4, 5, 6, 7, 0, 1, 2], 0))
+    print(s.search([1], 1))
     print(s.search([3, 1], 3))
