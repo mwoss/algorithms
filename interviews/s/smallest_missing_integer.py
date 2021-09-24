@@ -81,6 +81,7 @@ def get_unique_elem_arr(arr):
 
     return arr
 
+
 def test_empty_array_should_return_1():
     arr = []
 
