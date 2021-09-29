@@ -36,11 +36,32 @@ class Solution:
         return res_head
 
 
+class Solution2:
+    def swap_pairs_dummy_node(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None or head.next is None:
+            return head
+
+        dummy = ListNode(0)
+        dummy.next = head
+        curr = dummy
+
+        while curr.next and curr.next.next:
+            first, second = curr.next, curr.next.next
+
+            first.next = second.next
+            second.next = first
+            curr.next = second
+
+            curr = curr.next.next
+
+        return dummy.next
+
+
 if __name__ == '__main__':
-    s = Solution()
+    s = Solution2()
     node_list = ListNode(1, ListNode(2, ListNode(3, ListNode(4, None))))
 
-    res = s.swap_pairs(node_list)
+    res = s.swap_pairs_dummy_node(node_list)
 
     while res:
         print(res.val, end=" ")
