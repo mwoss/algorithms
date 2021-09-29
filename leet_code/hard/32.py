@@ -2,7 +2,6 @@
 Given a string containing just the characters '(' and ')',
 find the length of the longest valid (well-formed) parentheses substring.
 """
-import decimal
 
 # def longest_valid_parentheses(s: str) -> int:
 #     stack = []
