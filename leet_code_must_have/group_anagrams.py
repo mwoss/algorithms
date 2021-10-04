@@ -3,7 +3,7 @@ from typing import List
 
 
 class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    def group_anagrams(self, strs: List[str]) -> List[List[str]]:
         groups = defaultdict(list)
         for word in strs:
             bucket = "".join(sorted(word))
@@ -13,7 +13,7 @@ class Solution:
 
 
 class Solution2:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    def group_anagrams(self, strs: List[str]) -> List[List[str]]:
         groups = defaultdict(list)
         counters = [0] * 26
         for word in strs:
@@ -38,4 +38,4 @@ class Solution2:
 if __name__ == '__main__':
     s = Solution2()
     words = ["aew", "wea", "lool", "ooll", "xd"]
-    print(s.groupAnagrams(words))
+    print(s.group_anagrams(words))
