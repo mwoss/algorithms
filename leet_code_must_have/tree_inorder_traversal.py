@@ -13,17 +13,18 @@ class TreeNode:
 
 class Solution:
     def inorder_traversal(self, root: Optional[TreeNode]) -> List[int]:
+        if root is None:
+            return []
+
         result = []
         self.rec_helper(root, result)
         return result
 
     def rec_helper(self, root: Optional[TreeNode], result: List[int]):
-        if root is None:
-            return []
-
-        self.rec_helper(root.left, result)
-        result.append(root.val)
-        self.rec_helper(root.right, result)
+        if root:
+            self.rec_helper(root.left, result)
+            result.append(root.val)
+            self.rec_helper(root.right, result)
 
 
 class Solution2:
