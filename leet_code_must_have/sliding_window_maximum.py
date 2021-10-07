@@ -51,8 +51,11 @@ class Solution2:
                 return
             self.queue.popleft()
 
+        def max(self) -> int:
+            return self.queue[0][0]
+
 
 if __name__ == '__main__':
     s = Solution2()
-    # print(s.max_sliding_window([1, 3, -1, -3, 5, 3, 6, 7], 3))
+    print(s.max_sliding_window([1, 3, -1, -3, 5, 3, 6, 7], 3))
     print(s.max_sliding_window([7, 2, 4], 2))
