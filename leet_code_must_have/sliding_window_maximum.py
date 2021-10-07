@@ -55,7 +55,47 @@ class Solution2:
             return self.queue[0][0]
 
 
+class Solution3:
+
+    def max_sliding_window(self, nums: List[int], k: int) -> List[int]:
+        if not nums:
+            return []
+
+        if k == 1:
+            return nums
+
+        result = []
+        mono_queue = self.MonotonicQueue()
+
+        for i in range(k - 1):
+            mono_queue.push(nums[i])
+
+        for i in range(k - 1, len(nums)):
+            mono_queue.push(nums[i])
+            result.append(mono_queue.max())
+            mono_queue.pop(nums[i - k + 1])
+
+        return result
+
+    class MonotonicQueue:
+        def __init__(self):
+            # deque store actual values
+            self.queue = deque()
+
+        def push(self, val: int):
+            while self.queue and self.queue[-1] < val:
+                self.queue.pop()
+            self.queue.append(val)
+
+        def pop(self, val: int):
+            if val == self.queue[0]:
+                self.queue.popleft()
+
+        def max(self) -> int:
+            return self.queue[0]
+
+
 if __name__ == '__main__':
-    s = Solution2()
+    s = Solution3()
     print(s.max_sliding_window([1, 3, -1, -3, 5, 3, 6, 7], 3))
     print(s.max_sliding_window([7, 2, 4], 2))
