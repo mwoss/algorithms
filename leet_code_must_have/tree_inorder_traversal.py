@@ -45,7 +45,12 @@ class Solution2:
         return result
 
 
+class Solution3:
+    def inorder_traversal(self, root: Optional[TreeNode]) -> List[int]:
+        return self.inorder_traversal(root.left) + [root.val] + self.inorder_traversal(root.right) if root else []
+
+
 if __name__ == '__main__':
-    s = Solution2()
+    s = Solution3()
     tree = TreeNode(1, None, TreeNode(2, TreeNode(3), None))
     print(s.inorder_traversal(tree))

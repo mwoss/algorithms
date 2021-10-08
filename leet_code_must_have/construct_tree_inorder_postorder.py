@@ -30,6 +30,25 @@ class Solution:
         return build(0, len(inorder) - 1)
 
 
+class Solution2:
+    def build_tree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        node_inorder_positions = {val: idx for idx, val in enumerate(inorder)}
+
+        def build(in_low, in_high, post_low, post_high):
+            if in_low > in_high:
+                return None
+
+            root = TreeNode(postorder[post_high])
+            mid = node_inorder_positions[root.val]
+            in_delta = mid - in_low
+            root.left = build(in_low, mid - 1, post_low, post_low + in_delta - 1)
+            root.right = build(in_low + in_delta + 1, in_high, post_low + in_delta, post_high - 1)
+
+            return root
+
+        return build(0, len(inorder) - 1, 0, len(postorder) - 1)
+
+
 def inorder_traversal(root: Optional[TreeNode]):
     if root:
         inorder_traversal(root.left)
@@ -38,7 +57,7 @@ def inorder_traversal(root: Optional[TreeNode]):
 
 
 if __name__ == '__main__':
-    s = Solution()
+    s = Solution2()
     inorder = [9, 3, 15, 20, 7]
     postorder = [9, 15, 7, 20, 3]
     tree = s.build_tree(inorder, postorder)
