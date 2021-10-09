@@ -39,9 +39,9 @@ class Solution2:
                 return None
 
             root = TreeNode(postorder[post_high])
-            mid = node_inorder_positions[root.val]
-            in_delta = mid - in_low
-            root.left = build(in_low, mid - 1, post_low, post_low + in_delta - 1)
+            in_idx = node_inorder_positions[root.val]
+            in_delta = in_idx - in_low
+            root.left = build(in_low, in_idx - 1, post_low, post_low + in_delta - 1)
             root.right = build(in_low + in_delta + 1, in_high, post_low + in_delta, post_high - 1)
 
             return root
