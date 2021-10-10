@@ -13,6 +13,7 @@ the next pointer should be set to NULL.
 Initially, all next pointers are set to NULL.
 """
 from collections import deque
+from typing import Optional
 
 
 class Node:
@@ -24,7 +25,7 @@ class Node:
 
 
 class Solution:
-    def connect(self, root: 'Node') -> 'Node':
+    def connect(self, root: Optional['Node']) -> Optional['Node']:
         if root is None:
             return root
 
@@ -44,3 +45,30 @@ class Solution:
                     queue.append(curr_node.right)
 
         return root
+
+
+class Solution2:
+    def connect(self, root: Optional['Node']) -> Optional['Node']:
+        if root is None:
+            return root
+
+        node = root
+        while node:
+            curr = dummy = Node(0)
+            while node:
+                if node.left is not None:
+                    curr.next = node.left
+                    curr = curr.next
+                if node.right is not None:
+                    curr.next = node.right
+                    curr = curr.next
+                node = node.next
+            node = dummy.next
+
+        return root
+
+
+if __name__ == '__main__':
+    s = Solution2()
+    tree = Node(1, Node(2, Node(4), Node(5)), Node(3, None, Node(7)))
+    s.connect(tree)
