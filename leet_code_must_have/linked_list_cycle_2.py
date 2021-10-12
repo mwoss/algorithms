@@ -22,7 +22,7 @@ class Solution:
             return None
 
         slow, fast, entry = head, head, head
-        while slow.next and slow.next.next:
+        while fast.next and fast.next.next:
             slow = slow.next
             fast = fast.next.next
 
