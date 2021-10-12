@@ -67,6 +67,9 @@ class Solution3:
         result = []
         mono_queue = self.MonotonicQueue()
 
+        # if k can be bigger than input array size, then:
+        # k = k % len(nums)
+
         for i in range(k - 1):
             mono_queue.push(nums[i])
 
