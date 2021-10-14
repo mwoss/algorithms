@@ -12,6 +12,7 @@ from operator import add, truediv, mul, sub
 
 class Solution:
     def eval_rpn(self, tokens: List[str]) -> int:
+        # or use lambdas here
         operators = {
             "+": add,
             "-": sub,
