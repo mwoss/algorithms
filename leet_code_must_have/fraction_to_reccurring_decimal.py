@@ -15,25 +15,28 @@ class Solution:
 
         sign = "" if numerator * denominator >= 0 else "-"
         numerator, denominator = abs(numerator), abs(denominator)
-        result = sign + str(numerator // denominator) + "."
+        whole = sign + str(numerator // denominator) + "."
+
+        index, fractional = 0, ""
         numerator = numerator % denominator
-        i, fraction = 0, ""
-        buffer = {numerator: i}
+        buffer = {numerator: index}
+
         while numerator % denominator:
             numerator *= 10
-
             reminder = numerator % denominator
-            fraction += str(numerator // denominator)
+            fractional += str(numerator // denominator)
             if reminder in buffer:
-                f = fraction[:buffer[reminder]] + "(" + fraction[buffer[reminder]:] + ")"
-                return result + f
-            i += 1
-            buffer[reminder] = i
+                f = fractional[:buffer[reminder]] + "(" + fractional[buffer[reminder]:] + ")"
+                return whole + f
+            index += 1
+            buffer[reminder] = index
             numerator = reminder
 
-        return result + fraction
+        return whole + fractional
 
 
 if __name__ == '__main__':
     s = Solution()
     print(s.fraction_to_decimal(2, 3))
+    print(s.fraction_to_decimal(1, 5))
+    print(s.fraction_to_decimal(4, 333))
