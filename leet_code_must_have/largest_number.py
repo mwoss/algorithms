@@ -35,7 +35,7 @@ class Solution:
         # nums[end], nums[pivot] = nums[pivot], nums[end]
 
         for i in range(begin + 1, end + 1):
-            if self._compare(nums[i], nums[pivot]):
+            if self._compare(nums[i], nums[begin]):
                 pivot += 1
                 nums[i], nums[pivot] = nums[pivot], nums[i]
 
