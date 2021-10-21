@@ -1,3 +1,7 @@
+package main
+
+import "fmt"
+
 func getSum(a int, b int) int {
     sum := a
     for ; b > 0; {
@@ -6,4 +10,8 @@ func getSum(a int, b int) int {
         a = sum // add sum(without carry) and carry
     }
     return a
+}
+
+func main() {
+    fmt.Println(getSum(2, 5))
 }
