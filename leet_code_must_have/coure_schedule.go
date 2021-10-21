@@ -1,21 +1,45 @@
 package main
 
+import (
+	"container/list"
+	"fmt"
+)
 
 func canFinish(numCourses int, prerequisites [][]int) bool {
-	prerequisiteMapping := make(map[int]int)
+	graph := make([][]int, numCourses)
+	degrees := make([]int, numCourses)
 
 	for _, prerequisite := range prerequisites {
-		a, b := prerequisite[0], prerequisite[1]
-		prerequisiteMapping[b] = a
+		u, v := prerequisite[0], prerequisite[1]
+		graph[v] = append(graph[v], u)
+		degrees[u] += 1
 	}
 
-	for _, prerequisite := range prerequisites {
-		slow, fast := prerequisite[0], prerequisite[0]
-		//fast, exists := prerequisiteMapping[prerequisite[1]]
-		//if !exists {
-		//	continue
-		//}
-
-		for ; fast, exists := prerequisiteMapping[fast] ;
+	queue := list.New()
+	for courseId, degree := range degrees {
+		if degree == 0 {
+			queue.PushBack(courseId)
+		}
 	}
+
+	for queue.Len() > 0 {
+		curr := queue.Front().Value.(int)
+		queue.Remove(queue.Front())
+		numCourses -= 1
+
+		for _, n := range graph[curr] {
+			degrees[n] -= 1
+			if degrees[n] == 0 {
+				queue.PushBack(n)
+			}
+		}
+	}
+
+	return numCourses == 0
+}
+
+func main() {
+	fmt.Println(canFinish(2, [][]int{{1, 0}}))
+	fmt.Println(canFinish(3, [][]int{{1, 0}, {0, 1}}))
+	fmt.Println(canFinish(3, [][]int{{0, 2}, {1, 2}, {2, 0}}))
 }
