@@ -12,7 +12,7 @@ from typing import List, Deque
 
 class Solution:
     def can_finish(self, num_courses: int, prerequisites: List[List[int]]) -> bool:
-        # Khan's / BFS solution
+        # Kahn's / BFS solution
         graph = self._build_graph(num_courses, prerequisites)
         degrees = self._compute_indegrees(graph)
 
@@ -49,7 +49,7 @@ class Solution:
 
 class Solution2:
     def can_finish(self, num_courses: int, prerequisites: List[List[int]]) -> bool:
-        # Khan's algorithm (topological sort) but using queue
+        # Kahn's algorithm (topological sort) but using queue
         graph: List[List[int]] = [[] for _ in range(num_courses)]
         degrees: List[int] = [0] * num_courses
 
