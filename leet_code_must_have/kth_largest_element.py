@@ -24,18 +24,6 @@ class Solution2:
         return pq[0]
 
 
-class Solution2:
-    def find_kth_largest(self, nums: List[int], k: int) -> int:
-        pq = []
-        for num in nums:
-            heapq.heappush(pq, num)
-
-            if len(pq) > k:
-                heapq.heappop(pq)
-
-        return pq[0]
-
-
 class Solution3:
     def find_kth_largest(self, nums: List[int], k: int) -> int:
         low, high, capacity = 0, len(nums) - 1, len(nums) - k
