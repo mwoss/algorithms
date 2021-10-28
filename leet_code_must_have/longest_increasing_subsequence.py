@@ -9,6 +9,7 @@ from typing import List
 
 class Solution:
     def length_of_LIS(self, nums: List[int]) -> int:
+        # lis tells as about longest increasing subsequence starting from index i to the end of the nums list
         lis = [1] * len(nums)
         for i in range(len(nums) - 1, -1, -1):
             for j in range(i + 1, len(nums)):
