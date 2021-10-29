@@ -78,8 +78,11 @@ class Solution3:
     def find_last_common_element(self, path1: List[TreeNode], path2: List[TreeNode]) -> Optional[TreeNode]:
         common_len = min(len(path1), len(path2))
         for i in range(common_len):
-            if path1[i] != path2[i] and i != 0:
-                return path1[i - 1]
+            if path1[i] != path2[i]:
+                if i != 0:
+                    return path1[i - 1]
+                else:
+                    return None
         return None
 
 
