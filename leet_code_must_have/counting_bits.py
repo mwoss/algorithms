@@ -32,7 +32,18 @@ class Solution2:
         return ones
 
 
+class Solution3:
+    def count_bits(self, n: int) -> List[int]:
+        ones = [0] * (n + 1)
+        for i in range(n + 1):
+            if i & 1 == 0:
+                ones[i] = ones[i >> 1]
+            else:
+                ones[i] = ones[i >> 1] + 1
+        return ones
+
+
 if __name__ == '__main__':
-    s = Solution2()
+    s = Solution3()
     print(s.count_bits(2))
     print(s.count_bits(5))
