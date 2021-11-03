@@ -8,7 +8,8 @@ Twitter() Initializes your twitter object.
 * void postTweet(int userId, int tweetId) Composes a new tweet with ID tweetId by the user userId.
 Each call to this function will be made with a unique tweetId.
 * List<Integer> getNewsFeed(int userId) Retrieves the 10 most recent tweet IDs in the user's news feed.
-Each item in the news feed must be posted by users who the user followed or by the user themself. Tweets must be ordered from most recent to least recent.
+Each item in the news feed must be posted by users who the user followed or by the user themself.
+Tweets must be ordered from most recent to least recent.
 * void follow(int followerId, int followeeId) The user with ID followerId
 started following the user with ID followeeId.
 * void unfollow(int followerId, int followeeId) The user with ID followerId
@@ -59,6 +60,7 @@ class Twitter:
         if len(collection) > self._news_feed_size:
             heapq.heappop(collection)
 
+
 @dataclass
 class Tweet:
     tweet_id: int
@@ -82,30 +84,19 @@ class Twitter2:
             self._users[userId].head_post = Tweet(tweetId, None)
         else:
             tweet = Tweet(tweetId, self._users[userId].head_post)
-
+            # TODO
 
     def getNewsFeed(self, userId: int) -> List[int]:
-        all_posts = []
-
-        for followee_user_id in self._users[userId].followees:
-            for post in self._users[followee_user_id].posts:
-                self._insert_post(all_posts, post)
-
-        for self_posts in self._users[userId].posts:
-            self._insert_post(all_posts, self_posts)
-
-        return all_posts[::-1]
+        pass
 
     def follow(self, followerId: int, followeeId: int) -> None:
         self._users[followerId].followees.append(followeeId)
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
-        self._users[followerId].followees.remove(followeeId)
+        pass
 
     def _insert_post(self, collection: List[int], post: int) -> None:
-        heapq.heappush(collection, post)
-        if len(collection) > self._news_feed_size:
-            heapq.heappop(collection)
+        pass
 
 
 if __name__ == '__main__':
