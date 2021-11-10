@@ -37,8 +37,8 @@ def schedule_jobs(jobs: List[Job]):
         for job in jobs:
             if job_node in job.dependencies:
                 degrees[job.job_id] -= 1
-            if degrees[job.job_id] == 0:
-                queue.append(job.job_id)
+                if degrees[job.job_id] == 0:
+                    queue.append(job.job_id)
 
         jobs_count -= 1
 
@@ -46,3 +46,8 @@ def schedule_jobs(jobs: List[Job]):
         raise RuntimeError("At least two jobs depend on each other (potential cycle in dependency graph)")
 
     return top_order
+
+
+if __name__ == '__main__':
+    jobs = [Job(0, {1, 2}), Job(1, {3}), Job(2, {1}), Job(3, {})]
+    print(schedule_jobs(jobs))
