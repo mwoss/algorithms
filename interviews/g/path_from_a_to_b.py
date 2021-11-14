@@ -49,7 +49,7 @@ def find_node(root: Optional[TreeNode], node_val: int) -> Optional[TreeNode]:
         if node.right is not None:
             stack.append(node.right)
 
-    return None
+    raise Exception(f"Node [{node_val}] is expected to be in given tree")
 
 
 if __name__ == '__main__':
