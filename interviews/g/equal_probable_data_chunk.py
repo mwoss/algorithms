@@ -6,6 +6,8 @@ from typing import List
 
 
 def split_dataset(dataset: List[object], f: float) -> List[object]:
+    # optimal if f <= 0.5
+    # see: https://stackoverflow.com/questions/6947612/generating-m-distinct-random-numbers-in-the-range-0-n-1
     split_chunk_size = int(len(dataset) * f)
     chunk, visited_idx = [], set([])
 
@@ -19,8 +21,22 @@ def split_dataset(dataset: List[object], f: float) -> List[object]:
     return chunk
 
 
+def split_dataset_2(dataset: List[object], f: float) -> List[object]:
+    # optimal if f > 0.5
+    split_chunk_size = int(len(dataset) * f)
+    random.shuffle(dataset)
+    return dataset[:split_chunk_size]
+
+
+def split_dataset_reservoir_sampling(dataset: List[object], f: float) -> List[object]:
+    # If dataset is just a stream of data and we don't know how much elements the stream contains
+    # we can use reservoir sampling algorithm to chose k equally probable (distinct) elements from the stream
+    # see: https://en.wikipedia.org/wiki/Reservoir_sampling
+    pass
+
+
 if __name__ == '__main__':
     dataset = list(range(1000))
-    chunk = split_dataset(dataset, 0.9)
+    chunk = split_dataset_2(dataset, 0.9)
     print(chunk)
     print(len(set(chunk)))
