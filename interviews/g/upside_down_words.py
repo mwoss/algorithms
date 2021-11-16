@@ -1,7 +1,7 @@
 """
 README: TODO
 """
-from typing import List, Generator, Iterator
+from typing import List, Iterator
 
 LETTER_MAPPING = {
     "a": "e",
@@ -32,6 +32,8 @@ def filter_upside_down_words_2(words: List[str]) -> Iterator[str]:
 
 
 def is_upside_down_word(word: str) -> bool:
+    # it can be optimized by using two pointers (left, right) and iterating throughout
+    # both strings in the same time without allocating memory for reversed word
     for nl, udl in zip(word, word[::-1]):
         if udl not in LETTER_MAPPING or nl != LETTER_MAPPING[udl]:
             return False
