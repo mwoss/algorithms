@@ -5,41 +5,55 @@ n: numbers of rooms(doctors) in hospital
 patients: list of patients (tuple with entrance time and vaccination time)
 
 """
-from typing import List, Tuple
+from dataclasses import dataclass
+from typing import List
 
 
-def find_most_occupied_doc(rooms: int, patients: List[Tuple[int, int]]) -> int:
-    room_occupation = [(0, 0) for _ in range(rooms)]  # visits, occupied_until
-    most_occupied_room = (0, 0)  # idx, occupation
+@dataclass
+class Room:
+    id: int
+    visits: int = 0
+    occupied_until: int = 0
+
+
+@dataclass
+class Patient:
+    entrance_time: int
+    vaccination_time: int
+
+
+def find_most_occupied_doc(n_rooms: int, patients: List[Patient]) -> int:
+    room_occupation = [Room(id=i) for i in range(n_rooms)]  # visits, occupied_until
+    most_occupied_room = room_occupation[0]
 
     # if we assume patients list is not sorted by entrance times we need sort it before calculating rooms' occupation
-    patients.sort(key=lambda p: p[0])
+    patients.sort(key=lambda p: p.entrance_time)
 
-    for entrance, vaccination_time in patients:
-        free_room_idx = find_first_free_room(room_occupation, entrance)
-        current_visits = room_occupation[free_room_idx][0]
+    for patient in patients:
+        free_room = find_first_free_room(room_occupation, patient.entrance_time)
 
-        room_occupation[free_room_idx] = (current_visits + 1, entrance + vaccination_time)
+        free_room.visits += 1
+        free_room.occupied_until = patient.entrance_time + patient.vaccination_time
 
-        if most_occupied_room[1] < current_visits + 1:
-            most_occupied_room = (free_room_idx, current_visits + 1)
+        if most_occupied_room.visits < free_room.visits:
+            most_occupied_room = free_room
 
-    return most_occupied_room[0]
+    return most_occupied_room.id
 
 
-def find_first_free_room(room_occupation, entrance):
-    for room_idx, (visits, occupied_until) in enumerate(room_occupation):
-        if occupied_until < entrance:
-            return room_idx
+def find_first_free_room(rooms: List[Room], entrance_time: int) -> Room:
+    for room in rooms:
+        if room.occupied_until < entrance_time:
+            return room
     raise RuntimeError("Couldn't find any free room in hospital")
 
 
 if __name__ == '__main__':
     patients = [
-        (15, 10),
-        (20, 7),
-        (26, 10),
-        (28, 1),
-        (30, 1)
+        Patient(15, 10),
+        Patient(20, 7),
+        Patient(26, 10),
+        Patient(28, 1),
+        Patient(30, 1)
     ]
     print(find_most_occupied_doc(5, patients))
