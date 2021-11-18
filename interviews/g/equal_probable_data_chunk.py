@@ -1,5 +1,14 @@
 """
-README: TODO
+Having a dataset with random objects inside return a chunk of that dataset.
+Chunk should be of size "f * len(dataset)". Each element should have equal probability to be included into this chunk.
+
+Example:
+    dataset = [1, 2, 3]; f=2/3
+    chunk = [1, 2] or [2, 3] or [1, 3]
+
+Constraints:
+* f is between (0, 1)
+* dataset contains random objects, size is unknown but can be fit into memory
 """
 import random
 from typing import List

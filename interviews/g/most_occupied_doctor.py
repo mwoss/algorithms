@@ -1,9 +1,12 @@
 """
-README: TODO
+Imagine there is a hospital with n rooms, in each room there is a single doctor that does a vaccination for COVID.
+Also there is a p patients that want to be vaccinated. Every patient is different (opinions, etc) so vaccination time
+differs between patients. Knowing that each room can fit only single patient at time, find the most occupied
+room (doctor) after all patients' visits.
+Each patient contains information about when they come to hospital and how long the vaccination take for them.
 
 n: numbers of rooms(doctors) in hospital
-patients: list of patients (tuple with entrance time and vaccination time)
-
+patients: list of patients (entrance time and vaccination time)
 """
 import heapq
 from dataclasses import dataclass
