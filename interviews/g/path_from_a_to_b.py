@@ -1,5 +1,9 @@
 """
-README: TODO
+Having a binary tree that stores integers in nodes, value A (int) and value B (int) find the path between node with
+value a and node with value b.
+Path is a list of directions that we can use to go from node A to node B.
+Path can contains only "up", "right", "left" words.
+You can assume the path always exists and binary tree contains only unique nodes.
 """
 from dataclasses import dataclass
 from typing import Optional, List

@@ -1,5 +1,6 @@
 """
-README: TODO
+Having the list of words filter out all words that looks the same as its original form when we look at them up side down
+Up side down letter mapping is already provided (look LETTER_MAPPING).
 """
 from typing import List, Iterator
 
