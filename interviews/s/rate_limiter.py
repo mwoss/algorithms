@@ -16,10 +16,10 @@ class Request:
 
 class RateLimiter:
 
-    def __init__(self, req_cap: int, time_window_length: int):
+    def __init__(self, req_cap: int, time_window_length_ms: int):
         self._client_limits = defaultdict(lambda: deque(maxlen=req_cap))
         self._req_cap = req_cap
-        self._time_window_length = time_window_length
+        self._time_window_length_ms = time_window_length_ms
 
     def limit(self, request: Request) -> Tuple[Request, int]:
         client_req_queue = self._client_limits[request.client_id]
@@ -30,7 +30,7 @@ class RateLimiter:
             return request, 200
 
         # repetition just for code clarity
-        if self._time_window_length < request_timestamp - client_req_queue[0]:
+        if self._time_window_length_ms < request_timestamp - client_req_queue[0]:
             client_req_queue.append(request_timestamp)
             return request, 200
 

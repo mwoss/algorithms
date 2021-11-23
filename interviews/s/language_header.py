@@ -22,6 +22,8 @@ def get_accepted_languages_with_tags(user_language_header: str, server_acceptabl
     parsed_user_langs = [lang.strip() for lang in user_language_header.split(",")]
     already_added, accepted_langs = set(), []
 
+    # ugly as hell, but can be refactored (prettified) by using ordered set as main data structure
+    # or by extracting inner pieces to separate functions
     for lang in parsed_user_langs:
         if "-" not in lang:
             for server_lang in server_acceptable_languages:
