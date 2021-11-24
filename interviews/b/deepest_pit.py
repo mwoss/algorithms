@@ -28,6 +28,15 @@ Triplet (5, 7, 8) is yet another pit with depth 4. There is no pit in this array
 from typing import List
 
 
+def deepest_pit_simple(arr: List[int]) -> int:
+    max_depth = 0
+    for p in range(0, len(arr) - 2):
+        for q in range(p + 1, len(arr) - 1):
+            for r in range(q + 1, len(arr)):
+                max_depth = max(max_depth, min(arr[p] - arr[q], arr[r] - arr[q]))
+    return max_depth if max_depth else -1
+
+
 def deepest_pit(arr: List[int]) -> int:
     max_depth = 0
     p, q, r = 0, -1, -1
@@ -52,5 +61,29 @@ def deepest_pit(arr: List[int]) -> int:
     return max_depth
 
 
+def deepest_pit_2(arr: List[int]) -> int:
+    max_depth = 0
+    p, q, r = 0, -1, -1
+
+    for i in range(1, len(arr)):
+        if q < 0 and arr[i - 1] < arr[i]:
+            q = i - 1
+
+        if q >= 0 > r and (arr[i] <= arr[i - 1] or i + 1 == len(arr)):
+            if arr[i] <= arr[i - 1]:
+                r = i - 1
+            else:
+                r = i
+
+            max_depth = max(max_depth, min(arr[p] - arr[q], arr[r] - arr[q]))
+            p = i - 1
+            q = r = -1
+
+    if max_depth == 0:
+        return -1
+
+    return max_depth
+
+
 if __name__ == '__main__':
-    print(deepest_pit([10, 8, 5, 6, 8, 4, 2, 6, 7]))
+    print(deepest_pit_simple([10, 8, 5, 6, 8, 4, 2, 6, 7]))
