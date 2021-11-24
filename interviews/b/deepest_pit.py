@@ -37,7 +37,7 @@ def deepest_pit_simple(arr: List[int]) -> int:
     return max_depth if max_depth else -1
 
 
-def deepest_pit(arr: List[int]) -> int:
+def deepest_pit_optimal(arr: List[int]) -> int:
     max_depth = 0
     p, q, r = 0, -1, -1
 
@@ -61,28 +61,14 @@ def deepest_pit(arr: List[int]) -> int:
     return max_depth
 
 
-def deepest_pit_2(arr: List[int]) -> int:
-    max_depth = 0
-    p, q, r = 0, -1, -1
-
-    for i in range(1, len(arr)):
-        if q < 0 and arr[i - 1] < arr[i]:
-            q = i - 1
-
-        if q >= 0 > r and (arr[i] <= arr[i - 1] or i + 1 == len(arr)):
-            if arr[i] <= arr[i - 1]:
-                r = i - 1
-            else:
-                r = i
-
-            max_depth = max(max_depth, min(arr[p] - arr[q], arr[r] - arr[q]))
-            p = i - 1
-            q = r = -1
-
-    if max_depth == 0:
-        return -1
-
-    return max_depth
+def deepest_pit_optimal_2(arr: List[int]) -> int:
+    """
+    More solutions can be found here:
+    * https://hakanyurdakul.com/deepest-pit/
+    * https://github.com/trod/puzzles/blob/master/codility/DeepestPit.java
+    * https://codereview.stackexchange.com/questions/214743/deepest-pit-of-an-array
+    * https://stackoverflow.com/questions/46877274/confusion-regarding-deepest-pit-within-an-array
+    """
 
 
 if __name__ == '__main__':
