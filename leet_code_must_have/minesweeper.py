@@ -39,7 +39,7 @@ class Solution:
     def _reveal_cells(self, board: List[List[str]], cords: List[int]):
         x, y = cords
 
-        if x < 0 or x >= len(board) or y < 0 or y >= len(board[0]):
+        if x < 0 or x >= len(board) or y < 0 or y >= len(board[0]) or board[x][y] != "E":
             return
 
         if board[x][y] != "E":
@@ -89,10 +89,48 @@ class Solution:
         return mines
 
 
+class Solution2:
+    def update_board(self, board: List[List[str]], click: List[int]) -> List[List[str]]:
+        x, y = click
+
+        if board[x][y] == "M":
+            board[x][y] = "X"
+        elif board[x][y] == "E":
+            self._reveal_cells(board, click)
+
+        return board
+
+    def _reveal_cells(self, board: List[List[str]], cords: List[int]):
+        x, y = cords
+
+        if x < 0 or len(board) <= x or y < 0 or len(board[0]) <= y or board[x][y] != "E":
+            return
+
+        neighbors = [
+            [x + 1, y], [x, y + 1], [x + 1, y + 1], [x - 1, y],
+            [x, y - 1], [x - 1, y - 1], [x + 1, y - 1], [x - 1, y + 1]
+        ]
+
+        nearby_mines = 0
+        for neighbor in neighbors:
+            if neighbor[0] < 0 or len(board) <= neighbor[0] or neighbor[1] < 0 or len(board[0]) <= neighbor[1]:
+                continue
+            if board[neighbor[0]][neighbor[1]] == "M":
+                nearby_mines += 1
+
+        board[x][y] = str(nearby_mines) if nearby_mines else "B"
+
+        if board[x][y] != "B":
+            return
+
+        for neighbor in neighbors:
+            self._reveal_cells(board, neighbor)
+
+
 if __name__ == '__main__':
     board = [["E", "E", "E", "E", "E"], ["E", "E", "M", "E", "E"], ["E", "E", "E", "E", "E"], ["E", "E", "E", "E", "E"]]
     click = [3, 0]
-    s = Solution()
+    s = Solution2()
     import pprint
 
     pprint.pprint(s.update_board(board, click))
