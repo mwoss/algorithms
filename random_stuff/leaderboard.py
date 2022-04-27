@@ -9,17 +9,13 @@ class PlayerInfo:
 
 class Leaderboard:
     def __init__(self):
-        self.player_points = defaultdict(lambda: 0)
-        self.buckets = defaultdict(set)
+        self.points_to_player = {}
+        self.points_to_position = {}
 
 
     def give_point(self, player_name: str) -> int:
-        prev_points = self.player_points[player_name]
-
-        self.buckets[prev_points].remove(player_name)
-
-        self.player_points[player_name] = prev_points + 1
-        self.buckets[prev_points + 1].add(player_name)
+        points = self.points_to_player.get(player_name, 0)
+        self.points_to_player[player_name] = points + 1
 
         return 0
 
