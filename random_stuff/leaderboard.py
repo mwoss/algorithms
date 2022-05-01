@@ -1,25 +1,22 @@
 # support for updating the points, after that return current place in leaderboard
 
-from collections import defaultdict
-
-class PlayerInfo:
-    def __init__(self, points, place):
-        self.points = points
-        self.place = place
-
 class Leaderboard:
     def __init__(self):
-        self.points_to_player = {}
-        self.points_to_position = {}
-
+        self.points_to_player = {}  # "bob": 2, "alice": 2
 
     def give_point(self, player_name: str) -> int:
         points = self.points_to_player.get(player_name, 0)
+
         self.points_to_player[player_name] = points + 1
+        sorted_points = sorted(self.points_to_player.values(), reverse=True)
 
-        return 0
-
+        return sorted_points.index(points + 1) + 1
 
 
 if __name__ == '__main__':
-    print("XDD")
+    l = Leaderboard()
+    print(l.give_point("Bob"))
+    print(l.give_point("Alice"))
+    print(l.give_point("Bob"))
+    print(l.give_point("Alice"))
+    print(l.give_point("Joyce"))
