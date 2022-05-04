@@ -26,12 +26,12 @@ class Leaderboard2:
         self.snapshots = [{}]
 
     def give_point(self, player_name: str) -> int:
-        points = self.points_to_player.get(player_name, 0)
-
-        prev_snapshot = self.snapshots[-1]
-
-
-        return 0
+        """
+        Maybe combination of balanced tree + hashmap to store ranking info?
+        Or maybe store leaderboard as adjacency matrix, use additional map for quick access to nodes,
+        and second map for node to place mapping
+        """
+        pass
 
 
 if __name__ == '__main__':
