@@ -23,13 +23,16 @@ class Leaderboard:
 class Leaderboard2:
     def __init__(self):
         self.points_to_player = {}  # "bob": 2, "alice": 2, "joyce: 1 -> 1, 1, 3
-        self.snapshots = [{}]
+        self.points_ranking = {}
 
     def give_point(self, player_name: str) -> int:
         """
         Maybe combination of balanced tree + hashmap to store ranking info?
         Or maybe store leaderboard as adjacency matrix, use additional map for quick access to nodes,
         and second map for node to place mapping
+
+        Or we can store information about points to list of player mapping and update only neighbours.
+        We can also store information about how many players are higher in ranking that current player too.
         """
         pass
 
