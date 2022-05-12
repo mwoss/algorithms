@@ -23,7 +23,7 @@ class Leaderboard:
 class Leaderboard2:
     def __init__(self):
         self.points_to_player = {}  # "bob": 2, "alice": 2, "joyce: 1 -> 1, 1, 3
-        self.points_ranking = {}
+        self.players_behind = {}  # indicates how many ppl are behind certain ranking
 
     def give_point(self, player_name: str) -> int:
         """
@@ -34,7 +34,13 @@ class Leaderboard2:
         Or we can store information about points to list of player mapping and update only neighbours.
         We can also store information about how many players are higher in ranking that current player too.
         """
-        pass
+        current_points = self.points_to_player.get(player_name, 0)
+        behind = self.players_behind.get(current_points + 1, 0)
+
+        self.points_to_player[player_name] = current_points + 1
+        self.players_behind[current_points + 1] = behind + 1
+
+        return len(self.playe)
 
 
 if __name__ == '__main__':
