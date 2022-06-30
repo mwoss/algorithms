@@ -13,6 +13,13 @@ def three_sum(nums: List[int]) -> List[List[int]]:
                     result.add(tuple(sorted((nums[i], nums[j], nums[k]))))
     return [list(e) for e in result]
 
+def three_sum_optimized(nums: List[int]) -> List[List[int]]:
+    result = set()
+    nums = sorted(nums)
+
+    for i in range(len(nums) - 2):
+        pass
+
 
 if __name__ == '__main__':
     print(three_sum([]))
