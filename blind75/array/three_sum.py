@@ -34,7 +34,7 @@ def three_sum_optimized(nums: List[int]) -> List[List[int]]:
                 while nums[j] == nums[j + 1]: j += 1
                 while nums[k] == nums[k - 1]: k -= 1
                 j += 1
-                k += 1
+                k -= 1
             elif target < 0:
                 j += 1
             else:
