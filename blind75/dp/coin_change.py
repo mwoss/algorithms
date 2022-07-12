@@ -10,8 +10,10 @@ def coin_change(coins: List[int], amount: int) -> int:
         for curr_amount in range(amount + 1):
             possibilities[curr_amount] = min(possibilities[curr_amount], possibilities[curr_amount - coin] + 1)
 
-    return possibilities[amount]
+    if possibilities[amount] > amount:
+        return -1
 
+    return possibilities[amount]
 
 
 if __name__ == '__main__':
