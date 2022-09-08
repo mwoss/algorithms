@@ -12,9 +12,9 @@ def reorder_list(head: Optional[ListNode]) -> None:
         return head
 
     mid_node = find_middle(head)
-    rev_half = reverse_in_place(mid_node)
+    rev_head = reverse_in_place(mid_node)
 
-    curr, curr_rev = head, rev_half
+    curr, curr_rev = head, rev_head
     while curr_rev.next:
         temp_curr = curr.next
         temp_curr_rev = curr_rev.next
