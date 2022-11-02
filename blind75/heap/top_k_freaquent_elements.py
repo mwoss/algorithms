@@ -17,6 +17,16 @@ def top_k_frequent(nums: List[int], k: int) -> List[int]:
     return [num for _, num in most_frequent]
 
 
+def top_k_frequent_2(nums: List[int], k: int) -> List[int]:
+    # lazy version of above solution using built in heapq library capabilities :3
+    nums_count = Counter(nums)
+    most_frequent = heapq.nlargest(k, nums_count.items(), key=lambda e: e[0])
+    return [num for _, num in most_frequent]
+
+
 if __name__ == '__main__':
     print(top_k_frequent([1, 1, 1, 2, 2, 3], 2))
     print(top_k_frequent([1], 1))
+
+    print(top_k_frequent_2([1, 1, 1, 2, 2, 3], 2))
+    print(top_k_frequent_2([1], 1))
