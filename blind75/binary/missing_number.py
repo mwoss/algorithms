@@ -2,9 +2,10 @@ from typing import List
 
 
 def missing_number(nums: List[int]) -> int:
-    missing = 0
-    for idx, num in enumerate(nums):
-        missing = missing ^ num
+    missing = len(nums)
+    for i in range(len(nums)):
+        missing = missing ^ i
+        missing = missing ^ nums[i]
     return missing
 
 
