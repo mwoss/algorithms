@@ -16,21 +16,21 @@ def _propagate(grid: List[List[str]], i: int, j: int, visited: Set[Tuple[int, in
     stack = [(i, j)]
     visited.add((i, j))
     while stack:
-        node = stack.pop()
+        x, y = stack.pop()
 
-        visited.add(node)
+        visited.add((x, y))
 
-        if i > 0 and grid[i - 1][j] == "1" and (i - 1, j) not in visited:
-            stack.append((i - 1, j))
+        if x > 0 and grid[x - 1][y] == "1" and (x - 1, y) not in visited:
+            stack.append((x - 1, y))
 
-        if j > 0 and grid[i][j - 1] == "1" and (i, j - 1) not in visited:
-            stack.append((i, j - 1))
+        if y > 0 and grid[x][y - 1] == "1" and (x, y - 1) not in visited:
+            stack.append((x, y - 1))
 
-        if i < len(grid) - 1 and grid[i + 1][j] == "1" and (i + 1, j) not in visited:
-            stack.append((i + 1, j))
+        if x < len(grid) - 1 and grid[x + 1][y] == "1" and (x + 1, y) not in visited:
+            stack.append((x + 1, y))
 
-        if j < len(grid[0]) - 1 and grid[i][j + 1] == "1" and (i, j + 1) not in visited:
-            stack.append((i, j + 1))
+        if y < len(grid[0]) - 1 and grid[x][y + 1] == "1" and (x, y + 1) not in visited:
+            stack.append((x, y + 1))
 
     return visited
 
