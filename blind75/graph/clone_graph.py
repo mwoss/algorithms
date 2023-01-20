@@ -28,6 +28,13 @@ def clone_graph(curr: Optional[Node]) -> Optional[Node]:
         if curr.neighbors is not None:
             stack.extend(curr.neighbors)
 
+    return temp.neighbors[0]
+
 
 if __name__ == '__main__':
-    pass
+    graph1 = Node(1, [Node(2), Node(3, [Node(4)])])
+
+    cloned_graph = clone_graph(graph1)
+
+    print(graph1)
+    print(cloned_graph)
