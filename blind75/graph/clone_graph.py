@@ -7,34 +7,43 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 
 
-def clone_graph(curr: Optional[Node]) -> Optional[Node]:
-    if curr is None:
+def clone_graph(node: Optional[Node]) -> Optional[Node]:
+    if node is None:
         return None
 
     # no repeated edges and no self-loops in the graph
 
-    temp = head = Node(-1, [])
+    stack = [node]
+    cloned = {node.val: Node(node.val, [])}
 
-    stack = [curr]
     while stack:
         curr = stack.pop()
+        curr_clone = cloned[curr.val]
 
         node_copy = Node(curr.val, [])
 
-        head.neighbors.append(node_copy)
+        for neighbour in curr.neighbors:
+            if neighbour.val not in cloned:
+                cloned[neighbour.val] = Node(neighbour.val, [])
+                stack.append(neighbour)
 
-        head = node_copy
+            curr_clone.neighbors.append(cloned[neighbour.val])
 
-        if curr.neighbors is not None:
-            stack.extend(curr.neighbors)
-
-    return temp.neighbors[0]
+    return cloned[node.val]
 
 
 if __name__ == '__main__':
     graph1 = Node(1, [Node(2), Node(3, [Node(4)])])
 
     cloned_graph = clone_graph(graph1)
+
+    """
+        1 
+      /   \
+      2    3
+            \
+            4
+    """
 
     print(graph1)
     print(cloned_graph)
