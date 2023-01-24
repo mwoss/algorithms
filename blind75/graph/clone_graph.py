@@ -20,8 +20,6 @@ def clone_graph(node: Optional[Node]) -> Optional[Node]:
         curr = stack.pop()
         curr_clone = cloned[curr.val]
 
-        node_copy = Node(curr.val, [])
-
         for neighbour in curr.neighbors:
             if neighbour.val not in cloned:
                 cloned[neighbour.val] = Node(neighbour.val, [])
