@@ -31,17 +31,5 @@ def clone_graph(node: Optional[Node]) -> Optional[Node]:
 
 
 if __name__ == '__main__':
-    graph1 = Node(1, [Node(2), Node(3, [Node(4)])])
-
-    cloned_graph = clone_graph(graph1)
-
-    """
-        1 
-      /   \
-      2    3
-            \
-            4
-    """
-
-    print(graph1)
-    print(cloned_graph)
+    original_graph = Node(1, [Node(2), Node(3, [Node(4)])])
+    cloned_graph = clone_graph(original_graph)
