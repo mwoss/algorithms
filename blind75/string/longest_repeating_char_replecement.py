@@ -1,13 +1,24 @@
-from collections import Counter
+from collections import defaultdict
 
 
 def character_replacement(s: str, k: int) -> int:
-    c = Counter(s)
+    start, longest = 0, 0
+    frequencies = defaultdict(lambda: 0)
+    max_frequency = 0
 
-    pass
+    for end in range(len(s)):
+        frequencies[s[end]] += 1
 
-def _find_longest(s: str):
-    pass
+        max_frequency = max(max_frequency, frequencies[s[end]])
+
+        while end - start - max_frequency + 1 > k:
+            frequencies[s[start]] -= 1
+            start += 1
+
+        longest = max(longest, end - start + 1)
+
+    return longest
+
 
 if __name__ == '__main__':
     print(character_replacement("ABAB", 2))
