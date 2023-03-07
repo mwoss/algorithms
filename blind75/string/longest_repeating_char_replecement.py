@@ -23,3 +23,5 @@ def character_replacement(s: str, k: int) -> int:
 if __name__ == '__main__':
     print(character_replacement("ABAB", 2))
     print(character_replacement("AABABBA", 1))
+    print(character_replacement("AABABBAAAAB", 4))
+    print(character_replacement("AABACBACBAB", 3))
