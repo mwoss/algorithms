@@ -25,3 +25,7 @@ if __name__ == '__main__':
     print(character_replacement("AABABBA", 1))
     print(character_replacement("AABABBAAAAB", 4))
     print(character_replacement("AABACBACBAB", 3))
+    print(character_replacement("ZHAYYYDHJAYY", 5))
+    print(character_replacement("ABBBABBABABABBBCAGBDBAABBFHAXAAF", 6))
+    print(character_replacement("AAAAAAAAAB", 0))
+    print(character_replacement("XDDXDDDDXDSADXDDD", 10))
