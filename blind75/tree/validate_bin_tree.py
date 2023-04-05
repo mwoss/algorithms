@@ -9,15 +9,28 @@ class TreeNode:
 
 
 def is_valid_bst(root: Optional[TreeNode]) -> bool:
-    stack = [root]
+    stack, curr = [], root
     prev = None
 
-    while root:
-        node = stack.pop()
+    while stack or curr:
+        while curr:
+            stack.append(curr)
+            curr = curr.left
 
-        if prev is not None and node.left <= prev.left:
+        curr = stack.pop()
+
+        if prev is not None and curr.val <= prev.val:
             return False
 
-        prev = node
+        prev = curr
+        curr = curr.right
 
     return True
+
+
+if __name__ == '__main__':
+    tree1 = TreeNode(2, TreeNode(1), TreeNode(3))
+    print(is_valid_bst(tree1))
+
+    tree2 = TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3), TreeNode(6)))
+    print(is_valid_bst(tree2))
