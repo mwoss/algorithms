@@ -34,3 +34,9 @@ if __name__ == '__main__':
 
     tree2 = TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3), TreeNode(6)))
     print(is_valid_bst(tree2))
+
+    tree3 = None
+    print(is_valid_bst(tree1))
+
+    tree4 = TreeNode(5, TreeNode(3), TreeNode(6, TreeNode(1), TreeNode(2)))
+    print(is_valid_bst(tree2))
